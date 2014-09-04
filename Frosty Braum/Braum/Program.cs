@@ -63,10 +63,10 @@ namespace FrostyBraum
             
             
 
-           // if (Player.BaseSkinName != ChampName)
-            //{
-            //    return;
-           // }
+           if (Player.BaseSkinName != ChampName)
+            {
+              return;
+           }
 
             Q = new Spell(SpellSlot.Q, 1000);
             W = new Spell(SpellSlot.W, 650);
@@ -74,7 +74,7 @@ namespace FrostyBraum
             R = new Spell(SpellSlot.R, 1250);
             Q.SetSkillshot(0.3333f, 70f, 1200f, true, LeagueSharp.Common.SkillshotType.SkillshotLine);
             R.SetSkillshot(0.5f, 80f, 1200f, false, LeagueSharp.Common.SkillshotType.SkillshotLine);
-            BraumAutomatic = new Menu("Frosty Braum Activator", "Frosty Braum Activator");
+            //BraumAutomatic = new Menu("Frosty Braum Activator", "Frosty Braum Activator");
             BraumWrapper = new Menu(ChampName, ChampName, true);
             BraumWrapper.AddSubMenu(new Menu("Orbwalker", "Orbwalker"));
             Orbwalker = new Orbwalking.Orbwalker(BraumWrapper.SubMenu("Orbwalker"));
@@ -82,7 +82,7 @@ namespace FrostyBraum
             SimpleTs.AddToMenu(ts);
             BraumWrapper.AddSubMenu(ts);
             BraumWrapper.AddSubMenu(new Menu("Combo", "Combo"));
-            BraumAutomatic.AddSubMenu(new Menu("Auto", "Auto Items"));
+            //BraumAutomatic.AddSubMenu(new Menu("Auto", "Auto Items"));
             BraumWrapper.AddSubMenu(new Menu("Harrass", "Harrass"));
             BraumWrapper.SubMenu("Harrass").AddItem(new MenuItem("HarrassActive", "Harrass mode").SetValue(new KeyBind(16, KeyBindType.Toggle)));
             BraumWrapper.SubMenu("Harrass").AddItem(new MenuItem("HarrassMana", "Minimum Mana").SetValue(new Slider(60, 1, 100)));
