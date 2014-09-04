@@ -26,7 +26,7 @@ namespace Frosty_Sejuani
 
         static void Game_OnGameLoad(EventArgs args)
         {
-            if (Player.BaseSkinName != ChampName) return;
+           // if (Player.BaseSkinName != ChampName) return;
 
             Q = new Spell(SpellSlot.Q, 650);
             W = new Spell(SpellSlot.W, 350);
@@ -39,13 +39,12 @@ namespace Frosty_Sejuani
 
             SejuaniWrapper.AddSubMenu(new Menu("Orbwalker", "Orbwalker"));
             Orbwalker = new Orbwalking.Orbwalker(SejuaniWrapper.SubMenu("Orbwalker"));
-
             var ts = new Menu("Target Selector", "Target Selector");
             SimpleTs.AddToMenu(ts);
             SejuaniWrapper.AddSubMenu(ts);
-
             SejuaniWrapper.AddSubMenu(new Menu("Combo", "Combo"));
             SejuaniWrapper.SubMenu("Combo").AddItem(new MenuItem("useR", "Use R?").SetValue(true));
+            SejuaniWrapper.SubMenu("Combo").AddItem(new MenuItem("ComboActive", "COMBO!").SetValue(new KeyBind(32, KeyBindType.Press)));
             SejuaniWrapper.SubMenu("Combo").AddItem(new MenuItem("useRc", "Minimum R Hit").SetValue(new Slider(2, 1, 5)));
             SejuaniWrapper.SubMenu("Combo").AddItem(new MenuItem("chance", "Hitchance of R").SetValue(new Slider(2, 1, 4)));
             SejuaniWrapper.AddItem(new MenuItem("NFE", "Packet Casting").SetValue(true));
@@ -87,9 +86,9 @@ namespace Frosty_Sejuani
                 Q.Cast(target, SejuaniWrapper.Item("NFE").GetValue<bool>());
 
             }
-            if (target.IsValidTarget(W.Range) && W.IsReady())
+            if (target.IsValidTarget(Player.AttackRange) && W.IsReady())
             {
-                W.Cast(target, SejuaniWrapper.Item("NFE").GetValue<bool>());
+                W.Cast();
             }
             if (target.IsValidTarget(R.Range) && R.IsReady() && SejuaniWrapper.Item("useR").GetValue<bool>())
             {
@@ -110,7 +109,7 @@ namespace Frosty_Sejuani
             }
             if (target.IsValidTarget(E.Range) && E.IsReady())
             {
-                E.Cast(target, SejuaniWrapper.Item("NFE").GetValue<bool>());
+                E.Cast();
             }
         }
         private static void OnPosibleToInterrupt(Obj_AI_Base target, InterruptableSpell spell)
