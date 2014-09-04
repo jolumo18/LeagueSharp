@@ -1,0 +1,12 @@
+c:\users\fabian\documents\visual studio 2013\Projects\Braum\Braum\bin\Debug\Braum.exe.config
+C:\Users\Fabian\Documents\Visual Studio 2013\Projects\Braum\Braum\bin\Debug\Braum.exe
+C:\Users\Fabian\Documents\Visual Studio 2013\Projects\Braum\Braum\bin\Debug\Braum.pdb
+C:\Users\Fabian\Documents\Visual Studio 2013\Projects\Braum\Braum\bin\Debug\clipper_library.dll
+C:\Users\Fabian\Documents\Visual Studio 2013\Projects\Braum\Braum\bin\Debug\LeagueSharp.Common.dll
+C:\Users\Fabian\Documents\Visual Studio 2013\Projects\Braum\Braum\bin\Debug\LeagueSharp.dll
+C:\Users\Fabian\Documents\Visual Studio 2013\Projects\Braum\Braum\bin\Debug\SharpDX.dll
+C:\Users\Fabian\Documents\Visual Studio 2013\Projects\Braum\Braum\bin\Debug\SharpDX.Direct3D9.dll
+C:\Users\Fabian\Documents\Visual Studio 2013\Projects\Braum\Braum\bin\Debug\LeagueSharp.xml
+C:\Users\Fabian\Documents\Visual Studio 2013\Projects\Braum\Braum\obj\Debug\Braum.csprojResolveAssemblyReference.cache
+C:\Users\Fabian\Documents\Visual Studio 2013\Projects\Braum\Braum\obj\Debug\Braum.exe
+C:\Users\Fabian\Documents\Visual Studio 2013\Projects\Braum\Braum\obj\Debug\Braum.pdb
