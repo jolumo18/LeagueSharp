@@ -56,6 +56,8 @@ namespace Frosty_Renekton
             RenektonWrapper.SubMenu("Harrass").AddItem(new MenuItem("HarrassActive", "Harrass").SetValue(new KeyBind("X".ToCharArray()[0], KeyBindType.Press)));
             RenektonWrapper.SubMenu("Farm").AddItem(new MenuItem("FarmActive", "Farm").SetValue(new KeyBind("V".ToCharArray()[0], KeyBindType.Press)));
             RenektonWrapper.SubMenu("Farm").AddItem(new MenuItem("useqf", "Use Q to Farm").SetValue(true));
+            RenektonWrapper.AddSubMenu(new Menu("AntiGapclose", "AntiGapclose"));
+            RenektonWrapper.SubMenu("AntiGapclose").AddItem(new MenuItem("useeg", "Use E to AntiGapclose").SetValue(true));
             RenektonWrapper.SubMenu("Interrupt").AddItem(new MenuItem("usew", "Use W to Interrupt").SetValue(true));
             RenektonWrapper.AddToMainMenu();
 
@@ -186,7 +188,10 @@ namespace Frosty_Renekton
         }
         public static void AntiGapclose(ActiveGapcloser gapcloser)
         {
-           var target = gapcloser.End;
+            if(RenektonWrapper.Item("useeg").GetValue<bool>()){
+
+            
+            var target = gapcloser.End;
             if (E.IsReady())
             {
                 E.Cast(target, RenektonWrapper.Item("NFE").GetValue<bool>());
@@ -199,6 +204,7 @@ namespace Frosty_Renekton
                 TIA.Cast();
                 HYD.Cast();
 
+            }
             }
         }
     }
