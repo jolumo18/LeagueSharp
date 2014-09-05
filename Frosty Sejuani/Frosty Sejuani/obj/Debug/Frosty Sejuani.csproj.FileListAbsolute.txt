@@ -9,3 +9,6 @@ C:\Users\Fabian\Documents\Visual Studio 2013\Projects\Frosty Sejuani\Frosty Seju
 C:\Users\Fabian\Documents\Visual Studio 2013\Projects\Frosty Sejuani\Frosty Sejuani\obj\Debug\Frosty Sejuani.csprojResolveAssemblyReference.cache
 C:\Users\Fabian\Documents\Visual Studio 2013\Projects\Frosty Sejuani\Frosty Sejuani\obj\Debug\Frosty Sejuani.exe
 C:\Users\Fabian\Documents\Visual Studio 2013\Projects\Frosty Sejuani\Frosty Sejuani\obj\Debug\Frosty Sejuani.pdb
+C:\Users\Fabian\Documents\GitHub\LeagueSharp\Frosty Sejuani\Frosty Sejuani\bin\Debug\Frosty Sejuani.exe.config
+C:\Users\Fabian\Documents\GitHub\LeagueSharp\Frosty Sejuani\Frosty Sejuani\obj\Debug\Frosty Sejuani.exe
+C:\Users\Fabian\Documents\GitHub\LeagueSharp\Frosty Sejuani\Frosty Sejuani\obj\Debug\Frosty Sejuani.pdb

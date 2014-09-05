@@ -73,6 +73,8 @@ namespace Frosty_Yorick
 
         static void Drawing_OnDraw(EventArgs args)
         {
+            Drawing.DrawCircle(Player.Position, E.Range, Color.AliceBlue);
+            Drawing.DrawCircle(Player.Position, E.Range, Color.Black);
         }
 
         public static void Combo()
@@ -106,7 +108,7 @@ namespace Frosty_Yorick
                 
                 E.Cast(target,YorickWrapper.Item("NFE").GetValue<bool>());
             }
-            if (YorickWrapper.Item("useEW").GetValue<bool>() && W.IsReady() && target.IsValidTarget(W.Range))
+            if (YorickWrapper.Item("useWH").GetValue<bool>() && W.IsReady() && target.IsValidTarget(W.Range))
             {
 
                 W.Cast(target, YorickWrapper.Item("NFE").GetValue<bool>());
