@@ -48,14 +48,16 @@ namespace Frosty_Sejuani
             SejuaniWrapper.SubMenu("Combo").AddItem(new MenuItem("useRc", "Minimum R Hit").SetValue(new Slider(2, 1, 5)));
             SejuaniWrapper.SubMenu("Combo").AddItem(new MenuItem("chance", "Hitchance of R").SetValue(new Slider(2, 1, 4)));
             SejuaniWrapper.AddItem(new MenuItem("NFE", "Packet Casting").SetValue(true));
+            SejuaniWrapper.AddSubMenu(new Menu("AntiGapclose", "AntiGapclose"));
+            SejuaniWrapper.SubMenu("AntiGapclose").AddItem(new MenuItem("useqg", "Use Q to AntiGapclose").SetValue(true));
             SejuaniWrapper.AddSubMenu(new Menu("Interrupt", "Interrupt"));
             SejuaniWrapper.SubMenu("Interrupt").AddItem(new MenuItem("useq", "Use Q to Interrupt").SetValue(true));
             SejuaniWrapper.SubMenu("Interrupt").AddItem(new MenuItem("user", "Use R to Interrupt").SetValue(true));
             SejuaniWrapper.AddToMainMenu();
 
             Drawing.OnDraw += Drawing_OnDraw; 
-            Game.OnGameUpdate += Game_OnGameUpdate; 
-
+            Game.OnGameUpdate += Game_OnGameUpdate;
+            AntiGapcloser.OnEnemyGapcloser += AntiGapclose;
             Game.PrintChat("Frosty " + ChampName + " by newchild");
             Interrupter.OnPosibleToInterrupt += OnPosibleToInterrupt;
         }
@@ -127,6 +129,17 @@ namespace Frosty_Sejuani
                 {
                     R.Cast(target, SejuaniWrapper.Item("NFE").GetValue<bool>());
                 }
+            }
+        }
+        public static void AntiGapclose(ActiveGapcloser gapcloser)
+        {
+            
+            var target = gapcloser.End;
+            if (SejuaniWrapper.Item("useqg").GetValue<bool>())
+            {
+               
+                    Q.Cast(target, SejuaniWrapper.Item("NFE").GetValue<bool>());
+                
             }
         }
     }
