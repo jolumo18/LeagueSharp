@@ -12,6 +12,8 @@ namespace Frosty_Renekton
 {
     class Program
     {
+        public static Items.Item TIA;
+        public static Items.Item HYD;
         public static HitChance test;
         public static string ChampName = "Renekton";
         public static Orbwalking.Orbwalker Orbwalker;
@@ -26,10 +28,12 @@ namespace Frosty_Renekton
 
         static void Game_OnGameLoad(EventArgs args)
         {
+            TIA = new Items.Item(3077, 400);
+            HYD = new Items.Item(3074, 400);
             if (Player.BaseSkinName != ChampName) return;
             Q = new Spell(SpellSlot.Q, 215);
             W = new Spell(SpellSlot.W, Player.AttackRange);
-            E = new Spell(SpellSlot.E, 440);
+            E = new Spell(SpellSlot.E, 460);
             R = new Spell(SpellSlot.R, float.MaxValue);
             W.SetSkillshot(0.5f, 50.0f, 20.0f, false, SkillshotType.SkillshotLine);
 
@@ -44,6 +48,7 @@ namespace Frosty_Renekton
             RenektonWrapper.SubMenu("Combo").AddItem(new MenuItem("chance", "Use R Life?").SetValue(new Slider(40, 0, 100)));
             RenektonWrapper.SubMenu("Combo").AddItem(new MenuItem("ComboActive", "COMBO!").SetValue(new KeyBind(32, KeyBindType.Press)));
             RenektonWrapper.SubMenu("Combo").AddItem(new MenuItem("useR", "Use R").SetValue(true));
+            RenektonWrapper.SubMenu("Combo").AddItem(new MenuItem("useE2", "Use E twice").SetValue(true));
             RenektonWrapper.AddItem(new MenuItem("NFE", "Packet Casting").SetValue(true));
             RenektonWrapper.AddSubMenu(new Menu("Interrupt", "Interrupt"));
             RenektonWrapper.AddSubMenu(new Menu("Harrass", "Harrass"));
@@ -56,9 +61,10 @@ namespace Frosty_Renekton
 
             Drawing.OnDraw += Drawing_OnDraw;
             Game.OnGameUpdate += Game_OnGameUpdate;
-
+            AntiGapcloser.OnEnemyGapcloser += AntiGapclose;
             Game.PrintChat("Frosty " + ChampName + " by newchild");
             Interrupter.OnPosibleToInterrupt += OnPosibleToInterrupt;
+            
         }
 
         static void Game_OnGameUpdate(EventArgs args)
@@ -98,12 +104,16 @@ namespace Frosty_Renekton
                 }
                 Q.Cast();
                 W.Cast();
-                
+                TIA.Cast();
+                HYD.Cast();
+
             }
         }
 
         public static void Combo()
         {
+            
+
             var target = SimpleTs.GetTarget(E.Range, SimpleTs.DamageType.Physical);
             if (target == null) return;
 
@@ -124,16 +134,29 @@ namespace Frosty_Renekton
             if (target.IsValidTarget(E.Range) && E.IsReady())
             {
                 E.Cast(target,RenektonWrapper.Item("NFE").GetValue<bool>());
-                E.Cast(target, RenektonWrapper.Item("NFE").GetValue<bool>());
+                if (RenektonWrapper.Item("useE2").GetValue<bool>())
+                {
+                    E.Cast(target, RenektonWrapper.Item("NFE").GetValue<bool>());
+                }
+                
             }
         }
         private static void OnPosibleToInterrupt(Obj_AI_Base target, InterruptableSpell spell)
         {
             if (RenektonWrapper.Item("usew").GetValue<bool>())
             {
-                if (Player.Distance(target) < W.Range && W.IsReady())
+                if (target.IsValidTarget(E.Range) && E.IsReady())
                 {
-                    Q.Cast(target, RenektonWrapper.Item("NFE").GetValue<bool>());
+                    E.Cast(target, RenektonWrapper.Item("NFE").GetValue<bool>());
+                    while (Player.IsDashing())
+                    {
+
+                    }
+                    Q.Cast();
+                    W.Cast();
+                    TIA.Cast();
+                    HYD.Cast();
+
                 }
             }
             
@@ -159,6 +182,23 @@ namespace Frosty_Renekton
                     }
                         ;
                 }
+            }
+        }
+        public static void AntiGapclose(ActiveGapcloser gapcloser)
+        {
+           var target = gapcloser.End;
+            if (E.IsReady())
+            {
+                E.Cast(target, RenektonWrapper.Item("NFE").GetValue<bool>());
+                while (Player.IsDashing())
+                {
+
+                }
+                Q.Cast();
+                W.Cast();
+                TIA.Cast();
+                HYD.Cast();
+
             }
         }
     }
