@@ -27,9 +27,9 @@ namespace Frosty_Renekton
         static void Game_OnGameLoad(EventArgs args)
         {
             if (Player.BaseSkinName != ChampName) return;
-            Q = new Spell(SpellSlot.Q, 225);
+            Q = new Spell(SpellSlot.Q, 215);
             W = new Spell(SpellSlot.W, Player.AttackRange);
-            E = new Spell(SpellSlot.E, 450);
+            E = new Spell(SpellSlot.E, 440);
             R = new Spell(SpellSlot.R, float.MaxValue);
             W.SetSkillshot(0.5f, 50.0f, 20.0f, false, SkillshotType.SkillshotLine);
 
@@ -41,10 +41,9 @@ namespace Frosty_Renekton
             SimpleTs.AddToMenu(ts);
             RenektonWrapper.AddSubMenu(ts);
             RenektonWrapper.AddSubMenu(new Menu("Combo", "Combo"));
-            RenektonWrapper.SubMenu("Combo").AddItem(new MenuItem("useR", "Use R Life?").SetValue(new Slider(40, 0, 100)));
+            RenektonWrapper.SubMenu("Combo").AddItem(new MenuItem("chance", "Use R Life?").SetValue(new Slider(40, 0, 100)));
             RenektonWrapper.SubMenu("Combo").AddItem(new MenuItem("ComboActive", "COMBO!").SetValue(new KeyBind(32, KeyBindType.Press)));
-            RenektonWrapper.SubMenu("Combo").AddItem(new MenuItem("useRc", "Minimum R Hit").SetValue(new Slider(2, 1, 5)));
-            RenektonWrapper.SubMenu("Combo").AddItem(new MenuItem("chance", "Hitchance of R").SetValue(new Slider(2, 1, 4)));
+            RenektonWrapper.SubMenu("Combo").AddItem(new MenuItem("useR", "Use R").SetValue(true));
             RenektonWrapper.AddItem(new MenuItem("NFE", "Packet Casting").SetValue(true));
             RenektonWrapper.AddSubMenu(new Menu("Interrupt", "Interrupt"));
             RenektonWrapper.AddSubMenu(new Menu("Harrass", "Harrass"));
@@ -117,7 +116,7 @@ namespace Frosty_Renekton
             {
                 W.Cast();
             }
-            if (target.IsValidTarget(R.Range) && R.IsReady() && RenektonWrapper.Item("useR").GetValue<Slider>().Value >= ((Player.Health/Player.MaxHealth)*100))
+            if (RenektonWrapper.Item("useR").GetValue<bool>() && target.IsValidTarget(R.Range) && R.IsReady() && RenektonWrapper.Item("chance").GetValue<Slider>().Value >= ((Player.Health/Player.MaxHealth)*100))
             {
 
                 R.Cast();
