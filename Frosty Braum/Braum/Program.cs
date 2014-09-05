@@ -80,6 +80,7 @@ namespace FrostyBraum
             Orbwalker = new Orbwalking.Orbwalker(BraumWrapper.SubMenu("Orbwalker"));
             var ts = new Menu("Target Selector", "Target Selector");
             SimpleTs.AddToMenu(ts);
+            
             BraumWrapper.AddSubMenu(ts);
             BraumWrapper.AddSubMenu(new Menu("Combo", "Combo"));
             //BraumAutomatic.AddSubMenu(new Menu("Auto", "Auto Items"));

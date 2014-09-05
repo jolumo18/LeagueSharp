@@ -1,9 +1,6 @@
 C:\Users\Fabian\documents\visual studio 2013\Projects\Braum\Braum\bin\x86\Release\Braum.exe.config
 C:\Users\Fabian\documents\visual studio 2013\Projects\Braum\Braum\bin\x86\Release\Braum.exe
 C:\Users\Fabian\documents\visual studio 2013\Projects\Braum\Braum\bin\x86\Release\Braum.pdb
-C:\Users\Fabian\documents\visual studio 2013\Projects\Braum\Braum\bin\x86\Release\LeagueSharp.Common.dll
-C:\Users\Fabian\documents\visual studio 2013\Projects\Braum\Braum\bin\x86\Release\LeagueSharp.dll
-C:\Users\Fabian\documents\visual studio 2013\Projects\Braum\Braum\bin\x86\Release\SharpDX.dll
 C:\Users\Fabian\documents\visual studio 2013\Projects\Braum\Braum\bin\x86\Release\SharpDX.Direct3D9.dll
 C:\Users\Fabian\documents\visual studio 2013\Projects\Braum\Braum\bin\x86\Release\LeagueSharp.xml
 C:\Users\Fabian\documents\visual studio 2013\Projects\Braum\Braum\obj\x86\Release\Braum.exe

@@ -26,7 +26,7 @@ namespace Frosty_Sejuani
 
         static void Game_OnGameLoad(EventArgs args)
         {
-           if (Player.BaseSkinName != ChampName) return;
+           // if (Player.BaseSkinName != ChampName) return;
 
             Q = new Spell(SpellSlot.Q, 650);
             W = new Spell(SpellSlot.W, 350);
