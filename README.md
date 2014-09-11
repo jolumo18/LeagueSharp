@@ -1,4 +1,5 @@
 LeagueSharp
 ===========
-What to tell?
-Put the .exe into your Assembly folder
+Discontinued
+I no longer have fun creating those scripts.
+Although I might still fix bugs.
