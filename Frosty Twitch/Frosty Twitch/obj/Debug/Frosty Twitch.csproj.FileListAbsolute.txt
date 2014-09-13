@@ -1,0 +1,11 @@
+c:\users\fabian\documents\visual studio 2013\Projects\Frosty Twitch\Frosty Twitch\bin\Debug\Frosty Twitch.exe.config
+c:\users\fabian\documents\visual studio 2013\Projects\Frosty Twitch\Frosty Twitch\bin\Debug\Frosty Twitch.exe
+c:\users\fabian\documents\visual studio 2013\Projects\Frosty Twitch\Frosty Twitch\bin\Debug\Frosty Twitch.pdb
+c:\users\fabian\documents\visual studio 2013\Projects\Frosty Twitch\Frosty Twitch\bin\Debug\LeagueSharp.Common.dll
+c:\users\fabian\documents\visual studio 2013\Projects\Frosty Twitch\Frosty Twitch\bin\Debug\LeagueSharp.dll
+c:\users\fabian\documents\visual studio 2013\Projects\Frosty Twitch\Frosty Twitch\bin\Debug\SharpDX.dll
+c:\users\fabian\documents\visual studio 2013\Projects\Frosty Twitch\Frosty Twitch\bin\Debug\SharpDX.Direct3D9.dll
+c:\users\fabian\documents\visual studio 2013\Projects\Frosty Twitch\Frosty Twitch\bin\Debug\LeagueSharp.xml
+c:\users\fabian\documents\visual studio 2013\Projects\Frosty Twitch\Frosty Twitch\obj\Debug\Frosty Twitch.exe
+c:\users\fabian\documents\visual studio 2013\Projects\Frosty Twitch\Frosty Twitch\obj\Debug\Frosty Twitch.pdb
+C:\Users\Fabian\documents\visual studio 2013\Projects\Frosty Twitch\Frosty Twitch\obj\Debug\Frosty Twitch.csprojResolveAssemblyReference.cache
