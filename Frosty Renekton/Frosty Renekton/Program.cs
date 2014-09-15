@@ -64,20 +64,27 @@ namespace Frosty_Renekton
             Drawing.OnDraw += Drawing_OnDraw;
             Game.OnGameUpdate += Game_OnGameUpdate;
             AntiGapcloser.OnEnemyGapcloser += AntiGapclose;
-            Game.PrintChat("Frosty " + ChampName + " by newchild");
+            Game.PrintChat("Frosty " + ChampName + " by newchild 0.2");
             Interrupter.OnPosibleToInterrupt += OnPosibleToInterrupt;
             
         }
+        static void onLoseW()
+        {
 
+        }
         static void Game_OnGameUpdate(EventArgs args)
         {
+            foreach (var buff in ObjectManager.Player.Buffs)
+            {
+                Game.PrintChat(buff.Name);
+            }
             if (RenektonWrapper.Item("ComboActive").GetValue<KeyBind>().Active)
             {
                 Combo();
             }
             if (RenektonWrapper.Item("FarmActive").GetValue<KeyBind>().Active)
            {
-                //Farm();
+                Farm();
             }
             if (RenektonWrapper.Item("HarrassActive").GetValue<KeyBind>().Active)
             {
@@ -98,6 +105,7 @@ namespace Frosty_Renekton
 
             if (target.IsValidTarget(E.Range) && E.IsReady())
             {
+                Game.PrintChat("I should dash...");
                 E.Cast(target.ServerPosition, RenektonWrapper.Item("NFE").GetValue<bool>());
                 while(Player.IsDashing()){
                     Game.PrintChat("Dashing...");
@@ -133,10 +141,11 @@ namespace Frosty_Renekton
             }
             if (target.IsValidTarget(E.Range) && E.IsReady())
             {
+                Game.PrintChat("I should dash...");
                 E.Cast(target.ServerPosition, RenektonWrapper.Item("NFE").GetValue<bool>());
                 if (RenektonWrapper.Item("useE2").GetValue<bool>())
                 {
-                    E.Cast(target.ServerPosition, RenektonWrapper.Item("NFE").GetValue<bool>());
+                    E.Cast(target.ServerPosition);
                 }
                 
             }
@@ -147,7 +156,7 @@ namespace Frosty_Renekton
             {
                 if (target.IsValidTarget(E.Range) && E.IsReady())
                 {
-                    E.Cast(target.ServerPosition, RenektonWrapper.Item("NFE").GetValue<bool>());
+                    E.Cast(target.ServerPosition);
                     while (Player.IsDashing())
                     {
                         Game.PrintChat("Dashing...");

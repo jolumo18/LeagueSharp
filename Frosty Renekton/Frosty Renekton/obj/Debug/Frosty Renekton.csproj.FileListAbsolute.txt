@@ -15,7 +15,6 @@ C:\Users\Fabian\Documents\GitHub\LeagueSharp\Frosty Renekton\Frosty Renekton\bin
 C:\Users\Fabian\Documents\GitHub\LeagueSharp\Frosty Renekton\Frosty Renekton\bin\Debug\Frosty Renekton.pdb
 C:\Users\Fabian\Documents\GitHub\LeagueSharp\Frosty Renekton\Frosty Renekton\bin\Debug\LeagueSharp.Common.dll
 C:\Users\Fabian\Documents\GitHub\LeagueSharp\Frosty Renekton\Frosty Renekton\bin\Debug\LeagueSharp.dll
-C:\Users\Fabian\Documents\GitHub\LeagueSharp\Frosty Renekton\Frosty Renekton\bin\Debug\SharpDX.dll
 C:\Users\Fabian\Documents\GitHub\LeagueSharp\Frosty Renekton\Frosty Renekton\bin\Debug\SharpDX.Direct3D9.dll
 C:\Users\Fabian\Documents\GitHub\LeagueSharp\Frosty Renekton\Frosty Renekton\bin\Debug\LeagueSharp.xml
 C:\Users\Fabian\Documents\GitHub\LeagueSharp\Frosty Renekton\Frosty Renekton\obj\Debug\Frosty Renekton.csprojResolveAssemblyReference.cache
