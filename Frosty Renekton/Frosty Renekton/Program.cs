@@ -53,7 +53,7 @@ namespace Frosty_Renekton
             TIA = new Items.Item(3077, 400);
             HYD = new Items.Item(3074, 400);
             if (Player.BaseSkinName != ChampName) return;
-            Q = new Spell(SpellSlot.Q, 215);
+            Q = new Spell(SpellSlot.Q, 225);
             W = new Spell(SpellSlot.W, Player.AttackRange);
             E = new Spell(SpellSlot.E, 460);
             R = new Spell(SpellSlot.R, float.MaxValue);
