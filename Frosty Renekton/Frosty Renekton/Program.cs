@@ -51,11 +51,11 @@ namespace Frosty_Renekton
             RenektonWrapper.SubMenu("Combo").AddItem(new MenuItem("useE2", "Use E twice").SetValue(true));
             RenektonWrapper.AddItem(new MenuItem("NFE", "Packet Casting").SetValue(true));
             RenektonWrapper.AddSubMenu(new Menu("Interrupt", "Interrupt"));
-            RenektonWrapper.AddSubMenu(new Menu("Harrass", "Harrass"));
+           RenektonWrapper.AddSubMenu(new Menu("Harrass", "Harrass"));
             RenektonWrapper.AddSubMenu(new Menu("Farm", "Farm"));
             RenektonWrapper.SubMenu("Harrass").AddItem(new MenuItem("HarrassActive", "Harrass").SetValue(new KeyBind("X".ToCharArray()[0], KeyBindType.Press)));
-            RenektonWrapper.SubMenu("Farm").AddItem(new MenuItem("FarmActive", "Farm").SetValue(new KeyBind("V".ToCharArray()[0], KeyBindType.Press)));
-            RenektonWrapper.SubMenu("Farm").AddItem(new MenuItem("useqf", "Use Q to Farm").SetValue(true));
+           RenektonWrapper.SubMenu("Farm").AddItem(new MenuItem("FarmActive", "Farm").SetValue(new KeyBind("V".ToCharArray()[0], KeyBindType.Press)));
+           RenektonWrapper.SubMenu("Farm").AddItem(new MenuItem("useqf", "Use Q to Farm").SetValue(true));
             RenektonWrapper.AddSubMenu(new Menu("AntiGapclose", "AntiGapclose"));
             RenektonWrapper.SubMenu("AntiGapclose").AddItem(new MenuItem("useeg", "Use E to AntiGapclose").SetValue(true));
             RenektonWrapper.SubMenu("Interrupt").AddItem(new MenuItem("usew", "Use W to Interrupt").SetValue(true));
@@ -76,8 +76,8 @@ namespace Frosty_Renekton
                 Combo();
             }
             if (RenektonWrapper.Item("FarmActive").GetValue<KeyBind>().Active)
-            {
-                Farm();
+           {
+                //Farm();
             }
             if (RenektonWrapper.Item("HarrassActive").GetValue<KeyBind>().Active)
             {
@@ -88,9 +88,7 @@ namespace Frosty_Renekton
         static void Drawing_OnDraw(EventArgs args)
         {
             Utility.DrawCircle(Player.Position, Q.Range, Color.Azure);
-            Utility.DrawCircle(Player.Position, W.Range, Color.Black);
             Utility.DrawCircle(Player.Position, E.Range, Color.Crimson);
-            Utility.DrawCircle(Player.Position, R.Range, Color.Gold);
         }
 
         public static void Harrass()
@@ -100,9 +98,9 @@ namespace Frosty_Renekton
 
             if (target.IsValidTarget(E.Range) && E.IsReady())
             {
-                E.Cast(target, RenektonWrapper.Item("NFE").GetValue<bool>());
+                E.Cast(target.ServerPosition, RenektonWrapper.Item("NFE").GetValue<bool>());
                 while(Player.IsDashing()){
-
+                    Game.PrintChat("Dashing...");
                 }
                 Q.Cast();
                 W.Cast();
@@ -121,7 +119,7 @@ namespace Frosty_Renekton
 
             if (target.IsValidTarget(Q.Range) && Q.IsReady())
             {
-                Q.Cast(target, RenektonWrapper.Item("NFE").GetValue<bool>());
+                Q.Cast();
 
             }
             if (target.IsValidTarget(Player.AttackRange) && W.IsReady())
@@ -135,10 +133,10 @@ namespace Frosty_Renekton
             }
             if (target.IsValidTarget(E.Range) && E.IsReady())
             {
-                E.Cast(target,RenektonWrapper.Item("NFE").GetValue<bool>());
+                E.Cast(target.ServerPosition, RenektonWrapper.Item("NFE").GetValue<bool>());
                 if (RenektonWrapper.Item("useE2").GetValue<bool>())
                 {
-                    E.Cast(target, RenektonWrapper.Item("NFE").GetValue<bool>());
+                    E.Cast(target.ServerPosition, RenektonWrapper.Item("NFE").GetValue<bool>());
                 }
                 
             }
@@ -149,10 +147,10 @@ namespace Frosty_Renekton
             {
                 if (target.IsValidTarget(E.Range) && E.IsReady())
                 {
-                    E.Cast(target, RenektonWrapper.Item("NFE").GetValue<bool>());
+                    E.Cast(target.ServerPosition, RenektonWrapper.Item("NFE").GetValue<bool>());
                     while (Player.IsDashing())
                     {
-
+                        Game.PrintChat("Dashing...");
                     }
                     Q.Cast();
                     W.Cast();
@@ -175,10 +173,9 @@ namespace Frosty_Renekton
                     {
                         if (minion.IsValidTarget() && HealthPrediction.GetHealthPrediction(minion, (int)Player.Distance(minion) * 1000 / 14000) < 0.75 * DamageLib.getDmg(minion, DamageLib.SpellType.Q))
                         {
-                            if (Vector3.Distance(minion.ServerPosition, Player.ServerPosition) > Orbwalking.GetRealAutoAttackRange(Player))
-                            {
-                                Q.Cast();
-                            }
+                            
+                               Q.Cast();
+                           
                         }
                             ;
                     }
@@ -191,7 +188,7 @@ namespace Frosty_Renekton
             if(RenektonWrapper.Item("useeg").GetValue<bool>()){
 
             
-            var target = gapcloser.End;
+            var target = gapcloser.Start;
             if (E.IsReady())
             {
                 E.Cast(target, RenektonWrapper.Item("NFE").GetValue<bool>());

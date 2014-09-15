@@ -3,7 +3,6 @@ c:\users\fabian\documents\visual studio 2013\Projects\Frosty Renekton\Frosty Ren
 c:\users\fabian\documents\visual studio 2013\Projects\Frosty Renekton\Frosty Renekton\bin\Debug\Frosty Renekton.pdb
 c:\users\fabian\documents\visual studio 2013\Projects\Frosty Renekton\Frosty Renekton\bin\Debug\LeagueSharp.Common.dll
 c:\users\fabian\documents\visual studio 2013\Projects\Frosty Renekton\Frosty Renekton\bin\Debug\LeagueSharp.dll
-c:\users\fabian\documents\visual studio 2013\Projects\Frosty Renekton\Frosty Renekton\bin\Debug\SharpDX.dll
 c:\users\fabian\documents\visual studio 2013\Projects\Frosty Renekton\Frosty Renekton\bin\Debug\SharpDX.Direct3D9.dll
 c:\users\fabian\documents\visual studio 2013\Projects\Frosty Renekton\Frosty Renekton\bin\Debug\LeagueSharp.xml
 c:\users\fabian\documents\visual studio 2013\Projects\Frosty Renekton\Frosty Renekton\obj\Debug\Frosty Renekton.csprojResolveAssemblyReference.cache
