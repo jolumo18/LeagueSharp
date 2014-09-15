@@ -12,6 +12,9 @@ namespace Frosty_Renekton
 {
     class Program
     {
+       public static string wready = "RenektonPreExecute";
+       public static bool oldw = false;
+       public static bool curw = false;
         public static Items.Item TIA;
         public static Items.Item HYD;
         public static HitChance test;
@@ -21,6 +24,25 @@ namespace Frosty_Renekton
         public static Spell Q, W, E, R, AA;
 
         public static Menu RenektonWrapper;
+        static void testW()
+        {
+            foreach (var buff in ObjectManager.Player.Buffs)
+            {
+                if (buff.Name == wready)
+                {
+                    curw = true;
+                }
+                else
+                {
+                    curw = false;
+                }
+            }
+            if (curw == false && oldw == true)
+            {
+                onLoseW();
+            }
+            oldw = curw;
+        }
         static void Main(string[] args)
         {
             CustomEvents.Game.OnGameLoad += Game_OnGameLoad;
@@ -70,14 +92,13 @@ namespace Frosty_Renekton
         }
         static void onLoseW()
         {
-
+            TIA.Cast();
+            HYD.Cast();
         }
         static void Game_OnGameUpdate(EventArgs args)
         {
-            foreach (var buff in ObjectManager.Player.Buffs)
-            {
-                Game.PrintChat(buff.Name);
-            }
+            testW();
+            
             if (RenektonWrapper.Item("ComboActive").GetValue<KeyBind>().Active)
             {
                 Combo();
@@ -105,10 +126,8 @@ namespace Frosty_Renekton
 
             if (target.IsValidTarget(E.Range) && E.IsReady())
             {
-                Game.PrintChat("I should dash...");
                 E.Cast(target.ServerPosition, RenektonWrapper.Item("NFE").GetValue<bool>());
                 while(Player.IsDashing()){
-                    Game.PrintChat("Dashing...");
                 }
                 Q.Cast();
                 W.Cast();
@@ -125,6 +144,15 @@ namespace Frosty_Renekton
             var target = SimpleTs.GetTarget(E.Range, SimpleTs.DamageType.Physical);
             if (target == null) return;
 
+            if (target.IsValidTarget(E.Range) && E.IsReady())
+            {
+                E.Cast(target.ServerPosition, RenektonWrapper.Item("NFE").GetValue<bool>());
+                if (RenektonWrapper.Item("useE2").GetValue<bool>())
+                {
+                    E.Cast(target.ServerPosition);
+                }
+
+            }
             if (target.IsValidTarget(Q.Range) && Q.IsReady())
             {
                 Q.Cast();
@@ -139,16 +167,7 @@ namespace Frosty_Renekton
 
                 R.Cast();
             }
-            if (target.IsValidTarget(E.Range) && E.IsReady())
-            {
-                Game.PrintChat("I should dash...");
-                E.Cast(target.ServerPosition, RenektonWrapper.Item("NFE").GetValue<bool>());
-                if (RenektonWrapper.Item("useE2").GetValue<bool>())
-                {
-                    E.Cast(target.ServerPosition);
-                }
-                
-            }
+            
         }
         private static void OnPosibleToInterrupt(Obj_AI_Base target, InterruptableSpell spell)
         {
