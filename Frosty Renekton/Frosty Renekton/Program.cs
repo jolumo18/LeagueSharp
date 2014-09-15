@@ -86,7 +86,7 @@ namespace Frosty_Renekton
             Drawing.OnDraw += Drawing_OnDraw;
             Game.OnGameUpdate += Game_OnGameUpdate;
             AntiGapcloser.OnEnemyGapcloser += AntiGapclose;
-            Game.PrintChat("Frosty " + ChampName + " by newchild 0.2");
+            Game.PrintChat("Frosty " + ChampName + " by newchild 1.0");
             Interrupter.OnPosibleToInterrupt += OnPosibleToInterrupt;
             
         }
@@ -131,8 +131,6 @@ namespace Frosty_Renekton
                 }
                 Q.Cast();
                 W.Cast();
-                TIA.Cast();
-                HYD.Cast();
 
             }
         }
@@ -226,8 +224,6 @@ namespace Frosty_Renekton
                 }
                 Q.Cast();
                 W.Cast();
-                TIA.Cast();
-                HYD.Cast();
 
             }
             }
