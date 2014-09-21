@@ -34,13 +34,13 @@ namespace Testin_Leaguesharp
         static void Print()
         {
             Game.PrintChat("Player.FlatCooldownMod");
-            Game.PrintChat(Player.FlatCooldownMod.ToString());
+            Game.PrintChat(Convert.ToString(Player.FlatCooldownMod)));
             Game.PrintChat("Player.Pet.Name");
-            Game.PrintChat(Player.Pet.Name.ToString());
+            Game.PrintChat(Convert.ToString(Player.Pet.Name.ToString()));
             Game.PrintChat("Player.PercentCooldownMod");
-            Game.PrintChat(Player.PercentCooldownMod.ToString());
+            Game.PrintChat(Convert.ToString(Player.PercentCooldownMod.ToString()));
             Game.PrintChat("Player.PercentCCReduction");
-            Game.PrintChat(Player.PercentCCReduction.ToString());
+            Game.PrintChat(Convert.ToString(Player.PercentCCReduction.ToString()));
             Game.PrintChat("Player.Spellbook.Spells[0].Name");
             Game.PrintChat(Player.Spellbook.Spells[0].Name);
             Game.PrintChat("Player.Spellbook.Spells[1].Name");
