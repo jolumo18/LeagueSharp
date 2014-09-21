@@ -22,6 +22,7 @@ namespace Testin_Leaguesharp
             Halp = new Menu("halp","halp" , true);
             Game.OnGameUpdate += Game_OnGameUpdate;
             Halp.AddItem(new MenuItem("print", "print info").SetValue(new KeyBind("P".ToCharArray()[0], KeyBindType.Press)));
+            Halp.AddToMainMenu();
         }
         static void Game_OnGameUpdate(EventArgs args)
         {
