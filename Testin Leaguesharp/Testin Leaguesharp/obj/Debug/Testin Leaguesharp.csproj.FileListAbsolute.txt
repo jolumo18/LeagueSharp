@@ -1,2 +1,0 @@
-c:\users\fabian\documents\visual studio 2013\Projects\Testin Leaguesharp\Testin Leaguesharp\bin\Debug\Testin Leaguesharp.exe.config
-C:\Users\Fabian\Documents\GitHub\LeagueSharp\Testin Leaguesharp\Testin Leaguesharp\bin\Debug\Testin Leaguesharp.exe.config
