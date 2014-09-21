@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{51424FCE-1D91-4C1B-9A37-57BD810E9CC6}</ProjectGuid>
+    <ProjectGuid>{8D210C14-71AB-4001-B718-8C31030A6263}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Frosty_Renekton</RootNamespace>
-    <AssemblyName>Freaky Renekton</AssemblyName>
+    <RootNamespace>Testin_Leaguesharp</RootNamespace>
+    <AssemblyName>Testin Leaguesharp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,7 +43,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />

@@ -21,9 +21,9 @@ namespace Frosty_Renekton
         public static string ChampName = "Renekton";
         public static Orbwalking.Orbwalker Orbwalker;
         public static Obj_AI_Base Player = ObjectManager.Player;
+        public static GrassObject x;
         public static Spell Q, W, E, R, AA;
-
-        public static Menu RenektonWrapper;
+        public static Menu RenektonWrapper; 
         static void testW()
         {
             foreach (var buff in ObjectManager.Player.Buffs)
