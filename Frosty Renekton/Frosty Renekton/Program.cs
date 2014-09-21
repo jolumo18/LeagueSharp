@@ -12,9 +12,9 @@ namespace Frosty_Renekton
 {
     class Program
     {
-       public static string wready = "RenektonPreExecute";
-       public static bool oldw = false;
-       public static bool curw = false;
+        public static string wready = "RenektonPreExecute";
+        public static bool oldw = false;
+        public static bool curw = false;
         public static Items.Item TIA;
         public static Items.Item HYD;
         public static HitChance test;
@@ -71,7 +71,6 @@ namespace Frosty_Renekton
             RenektonWrapper.SubMenu("Combo").AddItem(new MenuItem("ComboActive", "COMBO!").SetValue(new KeyBind(32, KeyBindType.Press)));
             RenektonWrapper.SubMenu("Combo").AddItem(new MenuItem("useR", "Use R").SetValue(true));
             RenektonWrapper.SubMenu("Combo").AddItem(new MenuItem("useE2", "Use E twice").SetValue(true));
-            RenektonWrapper.AddItem(new MenuItem("NFE", "Packet Casting").SetValue(true));
             RenektonWrapper.AddSubMenu(new Menu("Interrupt", "Interrupt"));
            RenektonWrapper.AddSubMenu(new Menu("Harrass", "Harrass"));
             RenektonWrapper.AddSubMenu(new Menu("Farm", "Farm"));

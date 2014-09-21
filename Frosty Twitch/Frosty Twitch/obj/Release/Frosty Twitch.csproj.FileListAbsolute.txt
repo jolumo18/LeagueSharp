@@ -9,3 +9,9 @@ C:\Users\Fabian\documents\visual studio 2013\Projects\Frosty Twitch\Frosty Twitc
 C:\Users\Fabian\documents\visual studio 2013\Projects\Frosty Twitch\Frosty Twitch\obj\Release\Frosty Twitch.exe
 C:\Users\Fabian\documents\visual studio 2013\Projects\Frosty Twitch\Frosty Twitch\obj\Release\Frosty Twitch.pdb
 C:\Users\Fabian\documents\visual studio 2013\Projects\Frosty Twitch\Frosty Twitch\obj\Release\Frosty Twitch.csprojResolveAssemblyReference.cache
+C:\Users\Fabian\Documents\GitHub\LeagueSharp\Frosty Twitch\Frosty Twitch\bin\Release\Frosty Twitch.exe.config
+C:\Users\Fabian\Documents\GitHub\LeagueSharp\Frosty Twitch\Frosty Twitch\obj\Release\Frosty Twitch.exe
+C:\Users\Fabian\Documents\GitHub\LeagueSharp\Frosty Twitch\Frosty Twitch\obj\Release\Frosty Twitch.pdb
+C:\Users\Fabian\Documents\GitHub\LeagueSharp\Frosty Twitch\Frosty Twitch\bin\Release\Twitch.exe.config
+C:\Users\Fabian\Documents\GitHub\LeagueSharp\Frosty Twitch\Frosty Twitch\bin\Release\Freaky Twitch.exe.config
+C:\Users\Fabian\Documents\GitHub\LeagueSharp\Frosty Twitch\Frosty Twitch\obj\Release\Frosty Twitch.csprojResolveAssemblyReference.cache
