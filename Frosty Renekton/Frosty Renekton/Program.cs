@@ -53,7 +53,7 @@ namespace Frosty_Renekton
             TIA = new Items.Item(3077, 400);
             HYD = new Items.Item(3074, 400);
             if (Player.BaseSkinName != ChampName) return;
-            Q = new Spell(SpellSlot.Q, 225);
+            Q = new Spell(SpellSlot.Q, 250);
             W = new Spell(SpellSlot.W, Player.AttackRange);
             E = new Spell(SpellSlot.E, 460);
             R = new Spell(SpellSlot.R, float.MaxValue);
@@ -74,6 +74,8 @@ namespace Frosty_Renekton
             RenektonWrapper.AddSubMenu(new Menu("Interrupt", "Interrupt"));
            RenektonWrapper.AddSubMenu(new Menu("Harrass", "Harrass"));
             RenektonWrapper.AddSubMenu(new Menu("Farm", "Farm"));
+            RenektonWrapper.AddSubMenu(new Menu("Draw", "Drawing"));
+            RenektonWrapper.SubMenu("Draw").AddItem(new MenuItem("DrawActive", "Enable drawings").SetValue(new KeyBind("L".ToCharArray()[0], KeyBindType.Toggle)));
             RenektonWrapper.SubMenu("Harrass").AddItem(new MenuItem("HarrassActive", "Harrass").SetValue(new KeyBind("X".ToCharArray()[0], KeyBindType.Press)));
            RenektonWrapper.SubMenu("Farm").AddItem(new MenuItem("FarmActive", "Farm").SetValue(new KeyBind("V".ToCharArray()[0], KeyBindType.Press)));
            RenektonWrapper.SubMenu("Farm").AddItem(new MenuItem("useqf", "Use Q to Farm").SetValue(true));
@@ -114,8 +116,12 @@ namespace Frosty_Renekton
 
         static void Drawing_OnDraw(EventArgs args)
         {
-            Utility.DrawCircle(Player.Position, Q.Range, Color.Azure);
-            Utility.DrawCircle(Player.Position, E.Range, Color.Crimson);
+            if (RenektonWrapper.Item("DrawActive").GetValue<KeyBind>().Active)
+            {
+                Utility.DrawCircle(Player.Position, Q.Range, Color.Azure);
+                Utility.DrawCircle(Player.Position, E.Range, Color.Crimson);
+            }
+           
         }
 
         public static void Harrass()

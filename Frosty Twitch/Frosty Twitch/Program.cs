@@ -25,7 +25,7 @@ namespace Frosty_Yorick
         static void Game_OnGameLoad(EventArgs args)
         {
             if (Player.BaseSkinName != ChampName) return;
-            Game.PrintChat("Frosty " + ChampName + " by newchild");
+            Game.PrintChat("Freaky " + ChampName + " by newchild");
             Q = new Spell(SpellSlot.Q, 0);
             W = new Spell(SpellSlot.W, 950);
             E = new Spell(SpellSlot.E, 1200);
@@ -40,6 +40,8 @@ namespace Frosty_Yorick
             TwitchWrapper.AddSubMenu(ts);
             TwitchWrapper.AddSubMenu(new Menu("Combo", "Combo"));
             TwitchWrapper.SubMenu("Combo").AddItem(new MenuItem("ComboActive", "Combo!").SetValue(new KeyBind(32, KeyBindType.Press)));
+            TwitchWrapper.AddSubMenu(new Menu("Draw", "Drawing"));
+            TwitchWrapper.SubMenu("Draw").AddItem(new MenuItem("DrawActive", "Enable drawings").SetValue(new KeyBind("L".ToCharArray()[0], KeyBindType.Toggle)));
             TwitchWrapper.SubMenu("Combo").AddItem(new MenuItem("UseR", "Use R in COmbo").SetValue(new KeyBind("Y".ToCharArray()[0], KeyBindType.Toggle)));
             TwitchWrapper.AddItem(new MenuItem("NFE", "Packetcasting").SetValue(true));
             TwitchWrapper.AddToMainMenu();
@@ -67,9 +69,14 @@ namespace Frosty_Yorick
 
         static void Drawing_OnDraw(EventArgs args)
         {
-            Utility.DrawCircle(Player.Position, W.Range, Color.Black, 15);
-            Utility.DrawCircle(Player.Position, E.Range, Color.Crimson, 10);
-            Utility.DrawCircle(Player.Position, Player.AttackRange, Color.Brown);
+            if (TwitchWrapper.Item("DrawActive").GetValue<KeyBind>().Active)
+            {
+
+
+                Utility.DrawCircle(Player.Position, W.Range, Color.Black, 15);
+                Utility.DrawCircle(Player.Position, E.Range, Color.Crimson, 10);
+                Utility.DrawCircle(Player.Position, Player.AttackRange, Color.Brown);
+            }
         }
 
         public static void Combo()
