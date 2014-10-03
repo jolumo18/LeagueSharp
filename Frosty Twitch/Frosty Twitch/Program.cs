@@ -104,7 +104,7 @@ namespace Frosty_Yorick
                         .Where(
                             hero =>
                                 hero.IsValidTarget(E.Range) &&
-                                DamageLib.getDmg(hero, DamageLib.SpellType.E) - 15 > hero.Health))
+                                Damage.GetSpellDamage(hero, Damage.SpellSlot.E) - 15 > hero.Health))
                         E.Cast();
                 }
                 if (target.IsValidTarget((R.Range - 50)) && R.IsReady())
