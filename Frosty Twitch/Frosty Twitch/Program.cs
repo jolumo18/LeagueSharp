@@ -11,6 +11,7 @@ namespace Frosty_Yorick
 {
     class Program
     {
+        public static int PassiveDmg = 1;
         public static string ChampName = "Twitch";
         public static Orbwalking.Orbwalker Orbwalker;
         public static Obj_AI_Base Player = ObjectManager.Player;
@@ -53,8 +54,30 @@ namespace Frosty_Yorick
             Game.PrintChat("This is an enhanced version of the marksman plugin!");
         }
 
+        static void updatePassive(){
+            if(Player.Level == 1){
+                PassiveDmg = 1;
+            }
+            if(Player.Level == 4){
+                PassiveDmg = 2;
+            }
+            if(Player.Level == 7){
+                PassiveDmg = 3;
+            }
+            if(Player.Level == 10){
+                PassiveDmg = 4;
+            }
+            if(Player.Level == 13){
+                PassiveDmg = 5;
+            }
+            if(Player.Level == 16){
+                PassiveDmg = 6;
+            }
+            
+        }
         static void Game_OnGameUpdate(EventArgs args)
         {
+            updatePassive();
             if (E.Level > 0)
             {
                 Ecost = (E.Level * 10) + 40;
@@ -97,14 +120,19 @@ namespace Frosty_Yorick
                 }
                 if (target.IsValidTarget(E.Range) && E.IsReady())
                 {
-
+                    int ExpungeStacks = (from buff in target.Buffs
+                    where buff.DisplayName.ToLower() == "twitchdeadlyvenom"
+                    select buff.Count).FirstOrDefault();
+                    
+                    int DoT = ExpungeStacks*PassiveDmg;
+                    
                     foreach (
                     var hero in
                     ObjectManager.Get<Obj_AI_Hero>()
                         .Where(
                             hero =>
                                 hero.IsValidTarget(E.Range) &&
-                                E.GetDamage(hero) - 15 > hero.Health))
+                                (E.GetDamage(hero)+(DoT-20)) - 15 > hero.Health))
                         E.Cast();
                 }
                 if (target.IsValidTarget((R.Range - 50)) && R.IsReady())
