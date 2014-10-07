@@ -93,10 +93,9 @@ namespace Frosty_Yorick
         }
         static void disablePassive(object o){
             PassiveActive -= 1;
-            GC.Collect();
         }
         static void Orbwalking_BeforeAttack(){
-           PassiveActive += 1;
+           PassiveActive = 6;
            threadedFunc();
             
         }
@@ -137,9 +136,9 @@ namespace Frosty_Yorick
                     where buff.DisplayName.ToLower() == "twitchdeadlyvenom"
                     select buff.Count).FirstOrDefault();
                     
-                    int DoT = ExpungeStacks*PassiveDmg*PassiveActive;
+                    int DoT = ExpungeStacks*PassiveDmg;
                     
-                    Game.PrintChat8"Expected DoT= " + (string) DoT);
+                    Game.PrintChat("Expected DoT= " + (string) DoT);
                     
                     foreach (
                     var hero in
