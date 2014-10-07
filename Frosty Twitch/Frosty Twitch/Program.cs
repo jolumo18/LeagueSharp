@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace Frosty_Yorick
 {
     class Program
     {
+        public static int PassiveActive = 0;
         public static int PassiveDmg = 1;
         public static string ChampName = "Twitch";
         public static Orbwalking.Orbwalker Orbwalker;
@@ -89,7 +91,18 @@ namespace Frosty_Yorick
             }
 
         }
-
+        static void disablePassive(object o){
+            PassiveActive -= 1;
+            GC.Collect();
+        }
+        static void Orbwalking_BeforeAttack(){
+           PassiveActive += 1;
+           threadedFunc();
+            
+        }
+        static void threadedFunc(){
+            while(PassiveActive > 0){Timer t = new Timer(disablePassive, null, 6, 1000)}
+        }
         static void Drawing_OnDraw(EventArgs args)
         {
             if (TwitchWrapper.Item("DrawActive").GetValue<KeyBind>().Active)
@@ -124,7 +137,9 @@ namespace Frosty_Yorick
                     where buff.DisplayName.ToLower() == "twitchdeadlyvenom"
                     select buff.Count).FirstOrDefault();
                     
-                    int DoT = ExpungeStacks*PassiveDmg;
+                    int DoT = ExpungeStacks*PassiveDmg*PassiveActive;
+                    
+                    Game.PrintChat8"Expected DoT= " + (string) DoT);
                     
                     foreach (
                     var hero in
@@ -132,7 +147,7 @@ namespace Frosty_Yorick
                         .Where(
                             hero =>
                                 hero.IsValidTarget(E.Range) &&
-                                (E.GetDamage(hero)+(DoT-20)) - 15 > hero.Health))
+                                (E.GetDamage(hero)+DoT) - 15 > hero.Health))
                         E.Cast();
                 }
                 if (target.IsValidTarget((R.Range - 50)) && R.IsReady())
