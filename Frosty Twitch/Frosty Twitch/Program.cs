@@ -136,7 +136,7 @@ namespace Frosty_Yorick
                     where buff.DisplayName.ToLower() == "twitchdeadlyvenom"
                     select buff.Count).FirstOrDefault();
                     
-                    int DoT = ExpungeStacks*PassiveDmg;
+                    int DoT = ExpungeStacks*PassiveDmg*PassiveActive;
                     
                     Game.PrintChat("Expected DoT= " + (string) DoT);
                     
