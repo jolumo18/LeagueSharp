@@ -52,11 +52,11 @@ namespace Frosty_Yorick
             Drawing.OnDraw += Drawing_OnDraw;
             Game.OnGameUpdate += Game_OnGameUpdate;
 
-            Game.PrintChat("Frosty " + ChampName + " by newchild");
+            Game.PrintChat("Freaky " + ChampName + " by newchild");
             Game.PrintChat("This is an enhanced version of the marksman plugin!");
         }
 
-        static void updatePassive(){
+        /*static void updatePassive(){
             if(Player.Level == 1){
                 PassiveDmg = 1;
             }
@@ -75,7 +75,7 @@ namespace Frosty_Yorick
             if(Player.Level == 16){
                 PassiveDmg = 6;
             }
-            
+            */
         }
         static void Game_OnGameUpdate(EventArgs args)
         {
@@ -91,6 +91,7 @@ namespace Frosty_Yorick
             }
 
         }
+        /*
         static void disablePassive(object o){
             PassiveActive -= 1;
         }
@@ -102,6 +103,7 @@ namespace Frosty_Yorick
         static void threadedFunc(){
             while(PassiveActive > 0){Timer t = new Timer(disablePassive, null, 6, 1000)}
         }
+        */
         static void Drawing_OnDraw(EventArgs args)
         {
             if (TwitchWrapper.Item("DrawActive").GetValue<KeyBind>().Active)
@@ -120,11 +122,6 @@ namespace Frosty_Yorick
             if (target == null) return;
             if (target.Team != Player.Team)
             {
-                if (target.IsValidTarget(Player.AttackRange))
-                {
-
-
-                }
                 if (target.IsValidTarget(W.Range) && W.IsReady() && (Player.Mana > (50+Ecost)))
                 {
 
@@ -136,9 +133,9 @@ namespace Frosty_Yorick
                     where buff.DisplayName.ToLower() == "twitchdeadlyvenom"
                     select buff.Count).FirstOrDefault();
                     
-                    int DoT = ExpungeStacks*PassiveDmg*PassiveActive;
+                    //int DoT = ExpungeStacks*PassiveDmg*PassiveActive;
                     
-                    Game.PrintChat("Expected DoT= " + (string) DoT);
+                    //Game.PrintChat("Expected DoT= " + (string) DoT);
                     
                     foreach (
                     var hero in
@@ -146,7 +143,7 @@ namespace Frosty_Yorick
                         .Where(
                             hero =>
                                 hero.IsValidTarget(E.Range) &&
-                                (E.GetDamage(hero)+DoT) - 15 > hero.Health))
+                                (E.GetDamage(hero)) - 15 > hero.Health))
                         E.Cast();
                 }
                 if (target.IsValidTarget((R.Range - 50)) && R.IsReady())
