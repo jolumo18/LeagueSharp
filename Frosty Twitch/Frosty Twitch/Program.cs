@@ -76,7 +76,7 @@ namespace Frosty_Yorick
                 PassiveDmg = 6;
             }
             */
-        }
+        
         static void Game_OnGameUpdate(EventArgs args)
         {
             updatePassive();
