@@ -79,7 +79,7 @@ namespace Frosty_Yorick
         
         static void Game_OnGameUpdate(EventArgs args)
         {
-            updatePassive();
+            //updatePassive();
             if (E.Level > 0)
             {
                 Ecost = (E.Level * 10) + 40;
