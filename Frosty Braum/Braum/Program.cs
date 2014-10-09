@@ -20,38 +20,7 @@ namespace FrostyBraum
         public static Spell Q, W, E, R; 
         public static Menu BraumWrapper;
         public static Menu BraumAutomatic;
-        /*
-        static void castItem(int ID,Obj_AI_Base user){
-         
-            if (Items.HasItem(ID, (Obj_AI_Hero)user))
-            {
-                Items.UseItem(ID, user);
-            }
-        }
-
-        static void testforHeal()
-        {
-            bool healing = false;
-            foreach (var buff in ObjectManager.Player.Buffs)
-            {
-                if (buff.Name == "RegenerationPotion" && buff.Name == "ItemCrystalFlask" && buff.Name == "FlaskOfCrystalWater" && buff.Name == "ItemMiniRegenPotion")
-                {
-                    healing = true;
-                }
-                else
-                {
-                    healing = false;
-                }
-            }
-            if ((Player.Health * 100 / Player.MaxHealth) < BraumAutomatic.Item("MinPot").GetValue<Slider>().Value && !healing)
-            {
-                castItem(2003, Player);
-                castItem(2041, Player);
-                castItem(2004, Player);
-                castItem(2010, Player);
-            }
-        }
-         * */
+        
         static void Main(string[] args)
         {
                 
@@ -74,7 +43,7 @@ namespace FrostyBraum
             R = new Spell(SpellSlot.R, 1250);
             Q.SetSkillshot(0.3333f, 70f, 1200f, true, LeagueSharp.Common.SkillshotType.SkillshotLine);
             R.SetSkillshot(0.5f, 80f, 1200f, false, LeagueSharp.Common.SkillshotType.SkillshotLine);
-            //BraumAutomatic = new Menu("Frosty Braum Activator", "Frosty Braum Activator");
+            BraumAutomatic = new Menu("Freaky Braum KS :^)", "Freaky Braum KS :^)");
             BraumWrapper = new Menu(ChampName, ChampName, true);
             BraumWrapper.AddSubMenu(new Menu("Orbwalker", "Orbwalker"));
             Orbwalker = new Orbwalking.Orbwalker(BraumWrapper.SubMenu("Orbwalker"));
@@ -83,7 +52,6 @@ namespace FrostyBraum
             
             BraumWrapper.AddSubMenu(ts);
             BraumWrapper.AddSubMenu(new Menu("Combo", "Combo"));
-            //BraumAutomatic.AddSubMenu(new Menu("Auto", "Auto Items"));
             BraumWrapper.AddSubMenu(new Menu("Harrass", "Harrass"));
             BraumWrapper.SubMenu("Harrass").AddItem(new MenuItem("HarrassActive", "Harrass mode").SetValue(new KeyBind(16, KeyBindType.Toggle)));
             BraumWrapper.SubMenu("Harrass").AddItem(new MenuItem("HarrassMana", "Minimum Mana").SetValue(new Slider(60, 1, 100)));
@@ -91,8 +59,7 @@ namespace FrostyBraum
             BraumWrapper.SubMenu("Combo").AddItem(new MenuItem("useRc", "Minimum R Hit").SetValue(new Slider(2, 1, 5)));
             BraumWrapper.SubMenu("Combo").AddItem(new MenuItem("chance", "Hitchance of R").SetValue(new Slider(2, 1, 4)));
             BraumWrapper.SubMenu("Combo").AddItem(new MenuItem("ComboActive", "Combo").SetValue(new KeyBind(32, KeyBindType.Press)));
-           // BraumAutomatic.SubMenu("Auto").AddItem(new MenuItem("usePots", "Use Pots?").SetValue(true));
-            //BraumAutomatic.SubMenu("Auto").AddItem(new MenuItem("MinPot", "Minimum Life").SetValue(new Slider(60, 1, 100)));
+            BraumAutomatic.AddItem(new MenuItem("ksQ", "Use Q to ks").SetValue(true));
             BraumWrapper.AddItem(new MenuItem("NFE", "Packet Casting").SetValue(true));
             BraumWrapper.AddToMainMenu();
             Game.PrintChat("Frosty" + ChampName + " by newchild01");
@@ -104,21 +71,30 @@ namespace FrostyBraum
 
         static void Game_OnGameUpdate(EventArgs args)
         {
-            /*
-            if (BraumAutomatic.Item("usePots").GetValue<bool>())
-            {
 
-                testforHeal();
-            }*/
             if (BraumWrapper.Item("HarrassActive").GetValue<KeyBind>().Active){
                 Harrass();
             }
+            if(BraumWrapper.Item("ksQ").GetValue<bool>()){
+                ks();
+            }
+            
             if (BraumWrapper.Item("ComboActive").GetValue<KeyBind>().Active)
             {
                 Combo();
             }
         }
-
+        static void ks(){
+            foreach (
+                var hero in
+                ObjectManager.Get<Obj_AI_Hero>()
+                    .Where(
+                        hero =>
+                            hero.IsValidTarget(E.Range) &&
+                            (Q.GetDamage(hero)) - 15 > hero.Health))
+                Q.Cast();
+}
+        }
         static void Drawing_OnDraw(EventArgs args)
         {
             Utility.DrawCircle(Player.Position, Q.Range, Color.Azure);
@@ -140,7 +116,11 @@ namespace FrostyBraum
         {
 
             var target = SimpleTs.GetTarget(Q.Range, SimpleTs.DamageType.Magical);
+            if (target.IsValidTarget(Q.Range) && Q.IsReady())
+            {
+                Q.Cast(target, BraumWrapper.Item("NFE").GetValue<bool>());
 
+            }
             if (target.IsValidTarget(R.Range) && R.IsReady())
             {
                 
@@ -161,11 +141,7 @@ namespace FrostyBraum
                 R.CastIfWillHit(target, BraumWrapper.Item("UseRc").GetValue<Slider>().Value, BraumWrapper.Item("NFE").GetValue<bool>());
             }
 
-            if (target.IsValidTarget(Q.Range) && Q.IsReady())
-            {
-                Q.Cast(target, BraumWrapper.Item("NFE").GetValue<bool>());
-
-            }
+            
 
             if (target.IsValidTarget(target.AttackRange) && W.IsReady())
             {
