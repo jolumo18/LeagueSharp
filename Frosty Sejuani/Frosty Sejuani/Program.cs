@@ -13,7 +13,7 @@ namespace Frosty_Sejuani
     class Program
     {
         public static HitChance test;
-        public static string ChampName = "Sejuani";
+        public static string ChampName = "Teemo";
         public static Orbwalking.Orbwalker Orbwalker;
         public static Obj_AI_Base Player = ObjectManager.Player;
         public static Spell Q, W, E, R;
@@ -28,13 +28,8 @@ namespace Frosty_Sejuani
         {
            if (Player.BaseSkinName != ChampName) return;
 
-            Q = new Spell(SpellSlot.Q, 650);
-            W = new Spell(SpellSlot.W, 350);
-            E = new Spell(SpellSlot.E, 1000);
-            R = new Spell(SpellSlot.R, 1175);
-            Q.SetSkillshot(0.5f, 75.0f, 20.0f, true, SkillshotType.SkillshotLine);
-            R.SetSkillshot(0.5f, 110.0f, 1600.0f, true, SkillshotType.SkillshotLine);
-
+            Q = new Spell(SpellSlot.Q, 580);
+        
             SejuaniWrapper = new Menu(ChampName, ChampName, true);
 
             SejuaniWrapper.AddSubMenu(new Menu("Orbwalker", "Orbwalker"));
@@ -43,20 +38,16 @@ namespace Frosty_Sejuani
             SimpleTs.AddToMenu(ts);
             SejuaniWrapper.AddSubMenu(ts);
             SejuaniWrapper.AddSubMenu(new Menu("Combo", "Combo"));
-            SejuaniWrapper.SubMenu("Combo").AddItem(new MenuItem("useR", "Use R?").SetValue(true));
-            SejuaniWrapper.SubMenu("Combo").AddItem(new MenuItem("ComboActive", "COMBO!").SetValue(new KeyBind(32, KeyBindType.Press)));
-            SejuaniWrapper.SubMenu("Combo").AddItem(new MenuItem("useRc", "Minimum R Hit").SetValue(new Slider(2, 1, 5)));
-            SejuaniWrapper.SubMenu("Combo").AddItem(new MenuItem("chance", "Hitchance of R").SetValue(new Slider(2, 1, 4)));
+            SejuaniWrapper.SubMenu("Combo").AddItem(new MenuItem("ComboActive", "Cancer PLS!").SetValue(new KeyBind(32, KeyBindType.Press)));
             SejuaniWrapper.AddItem(new MenuItem("NFE", "Packet Casting").SetValue(true));
             SejuaniWrapper.AddSubMenu(new Menu("Interrupt", "Interrupt"));
             SejuaniWrapper.SubMenu("Interrupt").AddItem(new MenuItem("useq", "Use Q to Interrupt").SetValue(true));
-            SejuaniWrapper.SubMenu("Interrupt").AddItem(new MenuItem("user", "Use R to Interrupt").SetValue(true));
             SejuaniWrapper.AddToMainMenu();
 
             Drawing.OnDraw += Drawing_OnDraw; 
             Game.OnGameUpdate += Game_OnGameUpdate; 
 
-            Game.PrintChat("Frosty " + ChampName + " by newchild");
+            Game.PrintChat("Cancer " + ChampName + " by newchild");
             Interrupter.OnPosibleToInterrupt += OnPosibleToInterrupt;
         }
 
@@ -66,14 +57,13 @@ namespace Frosty_Sejuani
             {
                 Combo();
             }
+            ks();
         }
 
         static void Drawing_OnDraw(EventArgs args)
         {
             Utility.DrawCircle(Player.Position, Q.Range, Color.Azure);
-            Utility.DrawCircle(Player.Position, W.Range, Color.Black);
-            Utility.DrawCircle(Player.Position, E.Range, Color.Crimson);
-            Utility.DrawCircle(Player.Position, R.Range, Color.Gold);
+            Utility.DrawCircle(Player.Position, Player.AttackRange, Color.Azure);
         }
 
         public static void Combo()
@@ -86,31 +76,7 @@ namespace Frosty_Sejuani
                 Q.Cast(target, SejuaniWrapper.Item("NFE").GetValue<bool>());
 
             }
-            if (target.IsValidTarget(Player.AttackRange) && W.IsReady())
-            {
-                W.Cast();
-            }
-            if (target.IsValidTarget(R.Range) && R.IsReady() && SejuaniWrapper.Item("useR").GetValue<bool>())
-            {
-                if(SejuaniWrapper.Item("chance").GetValue<Slider>().Value == 1){
-                   test = HitChance.Low;
-               }
-                if(SejuaniWrapper.Item("chance").GetValue<Slider>().Value == 2){
-                   test = HitChance.Medium;
-               }        
-                if(SejuaniWrapper.Item("chance").GetValue<Slider>().Value == 3){
-                   test = HitChance.High;
-               }
-                if(SejuaniWrapper.Item("chance").GetValue<Slider>().Value == 4){
-                   test = HitChance.Immobile;
-               }
-                R.CastIfHitchanceEquals(target, test, SejuaniWrapper.Item("NFE").GetValue<bool>());
-                R.CastIfWillHit(target, SejuaniWrapper.Item("UseRc").GetValue<Slider>().Value, SejuaniWrapper.Item("NFE").GetValue<bool>());
-            }
-            if (target.IsValidTarget(E.Range) && E.IsReady())
-            {
-                E.Cast();
-            }
+        
         }
         private static void OnPosibleToInterrupt(Obj_AI_Base target, InterruptableSpell spell)
         {
@@ -121,13 +87,17 @@ namespace Frosty_Sejuani
                     Q.Cast(target, SejuaniWrapper.Item("NFE").GetValue<bool>());
                 }
             }
-            if (SejuaniWrapper.Item("user").GetValue<bool>())
-            {
-                if (Player.Distance(target) < R.Range && R.IsReady())
-                {
-                    R.Cast(target, SejuaniWrapper.Item("NFE").GetValue<bool>());
-                }
-            }
         }
+        static void ks(){
+            foreach (
+            var hero in
+            ObjectManager.Get<Obj_AI_Hero>()
+                .Where(
+                    hero =>
+                        hero.IsValidTarget(Q.Range) &&
+                            (Q.GetDamage(hero)) - 15 > hero.Health))
+                                Q.Cast();
+}
+}
     }
 }
