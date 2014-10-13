@@ -90,7 +90,7 @@ namespace FrostyBraum
                 ObjectManager.Get<Obj_AI_Hero>()
                     .Where(
                         hero =>
-                            hero.IsValidTarget(E.Range) &&
+                            hero.IsValidTarget(Q.Range) &&
                             (Q.GetDamage(hero)) - 15 > hero.Health))
                 Q.Cast();
 }
