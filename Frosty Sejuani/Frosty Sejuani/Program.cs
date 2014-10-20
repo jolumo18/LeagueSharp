@@ -13,7 +13,7 @@ namespace Frosty_Sejuani
     class Program
     {
         public static HitChance test;
-        public static string ChampName = "Teemo";
+        public static string ChampName = "Sejuani";
         public static Orbwalking.Orbwalker Orbwalker;
         public static Obj_AI_Base Player = ObjectManager.Player;
         public static Spell Q, W, E, R;
