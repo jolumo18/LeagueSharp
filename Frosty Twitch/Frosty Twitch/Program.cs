@@ -45,14 +45,12 @@ namespace Frosty_Yorick
             TwitchWrapper.SubMenu("Combo").AddItem(new MenuItem("ComboActive", "Combo!").SetValue(new KeyBind(32, KeyBindType.Press)));
             TwitchWrapper.AddSubMenu(new Menu("Draw", "Drawing"));
             TwitchWrapper.SubMenu("Draw").AddItem(new MenuItem("DrawActive", "Enable drawings").SetValue(new KeyBind("L".ToCharArray()[0], KeyBindType.Toggle)));
-            TwitchWrapper.SubMenu("Combo").AddItem(new MenuItem("UseR", "Use R in COmbo").SetValue(new KeyBind("Y".ToCharArray()[0], KeyBindType.Toggle)));
+            TwitchWrapper.SubMenu("Combo").AddItem(new MenuItem("UseR", "Use R in Combo").SetValue(new KeyBind("M".ToCharArray()[0], KeyBindType.Toggle)));
             TwitchWrapper.AddItem(new MenuItem("NFE", "Packetcasting").SetValue(true));
             TwitchWrapper.AddToMainMenu();
 
             Drawing.OnDraw += Drawing_OnDraw;
             Game.OnGameUpdate += Game_OnGameUpdate;
-
-            Game.PrintChat("Freaky " + ChampName + " by newchild");
             Game.PrintChat("This is an enhanced version of the marksman plugin!");
         }
 
