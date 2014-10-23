@@ -13,7 +13,7 @@ namespace Frosty_Sejuani
     class Program
     {
         public static HitChance test;
-        public static string ChampName = "Sejuani";
+        public static string ChampName = "Teemo";
         public static Orbwalking.Orbwalker Orbwalker;
         public static Obj_AI_Base Player = ObjectManager.Player;
         public static Spell Q, W, E, R;
@@ -73,7 +73,7 @@ namespace Frosty_Sejuani
 
             if (target.IsValidTarget(Q.Range) && Q.IsReady())
             {
-                Q.Cast(target, SejuaniWrapper.Item("NFE").GetValue<bool>());
+                Q.CastOnUnit(target);
 
             }
         
@@ -84,7 +84,7 @@ namespace Frosty_Sejuani
             {
                 if (Player.Distance(target) < Q.Range && Q.IsReady())
                 {
-                    Q.Cast(target, SejuaniWrapper.Item("NFE").GetValue<bool>());
+                    Q.CastOnUnit(target);
                 }
             }
         }
@@ -95,8 +95,8 @@ namespace Frosty_Sejuani
                 .Where(
                     hero =>
                         hero.IsValidTarget(Q.Range) &&
-                            (Q.GetDamage(hero)) - 15 > hero.Health))
-                                Q.Cast();
+                            (Q.GetDamage(hero)) > hero.Health))
+                                Q.CastOnUnit(hero);
 }
 }
 }
